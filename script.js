@@ -25,6 +25,8 @@ function createGrid(size) {
     })
 }
 
+createGrid(16);
+
 document.getElementById('resizeButton').addEventListener('click', () => {
     let size = prompt('Enter new grid size (max 100):');
     size = Math.min(size, 100); 
