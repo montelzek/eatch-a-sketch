@@ -10,3 +10,10 @@ for (let i = 1; i <= 16; i++) {
         row.appendChild(oner);
     }
 }
+
+const divs = document.querySelectorAll(".oner");
+divs.forEach((div) => {
+    div.addEventListener("mouseover", () => {
+        div.style.backgroundColor = "yellow";   
+    })
+})
