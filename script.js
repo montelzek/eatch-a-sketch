@@ -1,19 +1,32 @@
-const container = document.querySelector("#container");
-
-for (let i = 1; i <= 16; i++) {
-    const row = document.createElement("div");
-    row.classList.add("row");
-    container.appendChild(row);
-    for (let i = 1; i <= 16; i++) {
-        const oner = document.createElement("div");
-        oner.classList.add("oner");
-        row.appendChild(oner);
+function createGrid(size) {
+    const container = document.getElementById('container');
+    container.innerHTML = ''; 
+    container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+    container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+    
+    const squareSize = 600 / size; 
+    
+    for (let i = 0; i < size * size; i++) {
+        const div = document.createElement('div');
+        div.classList.add('grid-item');
+        div.style.width = `${squareSize}px`;
+        div.style.height = `${squareSize}px`;
+        container.appendChild(div);
     }
+
+    const divs = document.querySelectorAll(".grid-item");
+    divs.forEach((div) => {
+        div.addEventListener("mouseover", () => {
+            div.style.backgroundColor = "black";
+        })
+    })
 }
 
-const divs = document.querySelectorAll(".oner");
-divs.forEach((div) => {
-    div.addEventListener("mouseover", () => {
-        div.style.backgroundColor = "yellow";   
-    })
-})
+document.getElementById('resizeButton').addEventListener('click', () => {
+    let size = prompt('Enter new grid size (max 100):');
+    size = Math.min(size, 100); 
+    createGrid(size);
+});
+
+
+
